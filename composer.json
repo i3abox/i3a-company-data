@@ -1,0 +1,21 @@
+{
+    "name": "overnic/i3a-company-data",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "overnick",
+            "email": "overnic@httpd.cc"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "overnic/i3a-php-package": "^1.2",
+        "i3a/api-service": "^0.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "I3A\\Sdk\\Company\\": "src"
+        }
+    }
+}
