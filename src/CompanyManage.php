@@ -5,17 +5,46 @@
  * Date: 2018/12/25
  * Time: 15:39
  */
-
 namespace I3A\Sdk\Company;
 
-
-use I3A\Base\Package\PackageManage;
+use I3A\Sdk\Company\Aliyun\Enterprise;
+use I3A\Sdk\Company\I3A\Client;
+use OverNick\Support\Config;
 
 /**
+ * @method basic($company)
+ *
  * Class CompanyManage
+ *
+ * @property Config $config
+ * @property Client $i3a
+ * @property Enterprise $aliyun
+ *
  * @package I3A\Sdk\Company
  */
-class CompanyManage extends PackageManage
+class CompanyManage extends ServiceContainer
 {
+
+    protected $providers = [
+        Aliyun\ServiceProvider::class,
+        I3A\ServiceProvider::class
+    ];
+
+    public function getDriver()
+    {
+        return $this->config->get('default', 'aliyun');
+    }
+
+    /**
+     * 调用方法
+     *
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        return call_user_func_array([$this->offsetGet($this->getDriver()), $name], $arguments);
+    }
 
 }

@@ -10,8 +10,13 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": ">=7.0.0",
+        "ext-json": "*",
+        "ext-openssl": "*",
         "overnic/i3a-php-package": "^1.2",
-        "i3a/api-service": "^0.2.0"
+        "guzzlehttp/guzzle": "^6.3",
+        "pimple/pimple": "^3.2",
+        "overnic/support": "^1.1"
     },
     "autoload": {
         "psr-4": {
