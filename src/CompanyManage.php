@@ -30,6 +30,19 @@ class CompanyManage extends ServiceContainer
         I3A\ServiceProvider::class
     ];
 
+    /**
+     * @param $driver
+     * @return $this
+     */
+    public function driver($driver)
+    {
+        $this->config->set('default', $driver);
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getDriver()
     {
         return $this->config->get('default', 'aliyun');

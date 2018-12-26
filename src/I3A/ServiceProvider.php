@@ -9,8 +9,8 @@ class ServiceProvider implements ServiceProviderInterface
 
     public function register(Container $pimple)
     {
-        $pimple['i3a'] = function () {
-            return new Client();
+        $pimple['i3a'] = function ($app) {
+            return new Client($app);
         };
     }
 

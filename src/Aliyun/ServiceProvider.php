@@ -16,7 +16,7 @@ class ServiceProvider implements ServiceProviderInterface
     public function register(Container $pimple)
     {
         $pimple['aliyun'] = function($app){
-            return new Enterprise($app['config']);
+            return new Enterprise($app);
         };
     }
 
