@@ -54,9 +54,7 @@ class ClientBase extends CompanyBase
             return false;
         }
         $result = json_decode($response->getBody()->getContents(), true);
-        if(array_get($result , 'errcode') != 0){
-            return false;
-        }
+       
         return array_get($result , 'data');
     }
 
