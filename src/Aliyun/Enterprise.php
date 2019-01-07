@@ -40,11 +40,11 @@ class Enterprise extends DataBase
     {
         $result =  $this->request(
             str_replace('{$service_code}',
-                $this->app->config->get('aliyun.enterprise.service_code'),
+                $this->app->config->get('aliyun.service_code'),
                 $this->basicUrl
             ),
             [
-                'token' => $this->app->config->get('aliyun.enterprise.token'),
+                'token' => $this->app->config->get('aliyun.token'),
                 'compName' => $companyName
             ],
             'POST'
@@ -53,8 +53,10 @@ class Enterprise extends DataBase
         if($result->getStatusCode() != 200){
             return false;
         }
-
-        return json_decode($result->getBody()->getContents(), true);
+        $data = json_decode($result->getBody()->getContents(), true);
+        // 解密参数
+        $dataArray = json_decode($this->getData($data , true) , true);
+        return $this->setData($dataArray);
     }
 
     /**

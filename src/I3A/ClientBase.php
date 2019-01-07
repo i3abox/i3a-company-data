@@ -44,21 +44,18 @@ class ClientBase extends CompanyBase
         $options = array_merge($options, [
             'verify' => false,
             'http_errors' => false,
-            'form_params' => $params,
+            'json' => $params,
             'headers' => [
                 'I3A-AUTH' => $this->buildSign()
             ]
         ]);
-
         $response = $this->getHttpClient()->request($method, $this->gateWay($url), $options);
-
-        if($response->getStatusCode() !== 200){
+        if($response->getStatusCode() != 200){
             return false;
         }
-
-        $result = $response->getBody()->getContents();
-
-        return json_decode($result, true);
+        $result = json_decode($response->getBody()->getContents(), true);
+       
+        return array_get($result , 'data');
     }
 
     /**
