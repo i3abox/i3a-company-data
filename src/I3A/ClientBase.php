@@ -53,9 +53,8 @@ class ClientBase extends CompanyBase
         if($response->getStatusCode() != 200){
             return false;
         }
-        $result = json_decode($response->getBody()->getContents(), true);
-       
-        return array_get($result , 'data');
+        return json_decode($response->getBody()->getContents(), true);
+
     }
 
     /**
